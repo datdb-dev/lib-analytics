@@ -25,7 +25,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
         Map<String, String> data = remoteMessage.getData();
         String packageName = data.get("package_name");
         Log.d("datdb", "onMessageReceived: " + packageName);
