@@ -1,4 +1,4 @@
-package com.datdb.analytics;
+package com.js.analytics.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.js.analytics.R;
+
 
 public class AlertDialog extends Dialog {
     private OnAlertDialogListener onAlertDialogListener;

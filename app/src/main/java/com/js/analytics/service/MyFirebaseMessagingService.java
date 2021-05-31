@@ -1,4 +1,4 @@
-package com.datdb.analytics;
+package com.js.analytics.service;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -7,15 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.js.analytics.R;
 
-import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
@@ -26,16 +25,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Map<String, String> data = remoteMessage.getData();
-        String packageName = data.get("package_name");
-        Log.d("datdb", "onMessageReceived: " + packageName);
-        if (packageName == null) {
-            RemoteMessage.Notification notification = remoteMessage.getNotification();
-            if (notification != null) {
-                createNotification(this, remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
-            }
-        } else {
-            SharedUtils.getInstance().putString(AnalyticsManager.PACKAGE_NAME_NEW_APP, packageName);
+        RemoteMessage.Notification notification = remoteMessage.getNotification();
+        if (notification != null) {
+            createNotification(this, remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
     }
 
