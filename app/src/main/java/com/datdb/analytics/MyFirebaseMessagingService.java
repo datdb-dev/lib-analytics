@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -27,6 +28,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         Map<String, String> data = remoteMessage.getData();
         String packageName = data.get("package_name");
+        Log.d("datdb", "onMessageReceived: " + packageName);
         if (packageName == null) {
             RemoteMessage.Notification notification = remoteMessage.getNotification();
             if (notification != null) {
